@@ -9,7 +9,7 @@ export function POST(request: Request): Promise<Response> {
     request,
     async () => {
       const data = await readJsonBody(request, ProgressSchema);
-      const saved = await replaceProgress(data, serverDeps());
+      const saved = await replaceProgress(data, await serverDeps());
       return json({ progress: saved.data, version: saved.version, orphans: saved.orphans });
     },
     { mutating: true },

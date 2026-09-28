@@ -5,7 +5,7 @@ import { updateProgress } from "@/lib/progress/service";
 
 export function GET(request: Request): Promise<Response> {
   return handle(request, async () => {
-    const { store } = serverDeps();
+    const { store } = await serverDeps();
     const { data, version } = await store.read();
     return json({ progress: data, version });
   });
@@ -16,7 +16,7 @@ export function PATCH(request: Request): Promise<Response> {
     request,
     async () => {
       const { ops } = await readJsonBody(request, PatchBodySchema);
-      const saved = await updateProgress(ops, serverDeps());
+      const saved = await updateProgress(ops, await serverDeps());
       return json({ progress: saved.data, version: saved.version });
     },
     { mutating: true },

@@ -1,9 +1,8 @@
-import { createHash } from "node:crypto";
 import { z } from "zod";
 import { ProgressSchema, type Progress } from "@/lib/progress/schema";
 import { CorruptProgressError } from "./types";
 
-/** Stable, readable JSON: fixed key order, tasks sorted by day then number, trailing newline. */
+/** Stable, readable JSON for export: fixed key order, tasks sorted by day then number, trailing newline. */
 export function serializeProgress(data: Progress): string {
   const ordered = {
     schemaVersion: data.schemaVersion,
@@ -22,29 +21,16 @@ export function serializeProgress(data: Progress): string {
   return `${JSON.stringify(ordered, null, 2)}\n`;
 }
 
-/** Parses stored bytes (a UTF-8 BOM is fine) or throws CorruptProgressError carrying the version. */
-export function parseStoredProgress(bytes: Uint8Array, where: string, version: string): Progress {
-  let json: unknown;
-  try {
-    json = JSON.parse(new TextDecoder().decode(bytes));
-  } catch (error) {
-    throw new CorruptProgressError(
-      `${where} is not valid JSON (${error instanceof Error ? error.message : String(error)}). Fix the file or import a backup.`,
-      version,
-    );
-  }
+/** Validates a stored document or throws CorruptProgressError carrying its version. */
+export function parseStoredProgress(json: unknown, version: string): Progress {
   const result = ProgressSchema.safeParse(json);
   if (!result.success) {
     throw new CorruptProgressError(
-      `${where} doesn't match the progress schema. Fix the file or import a backup.\n${z.prettifyError(result.error)}`,
+      `Your saved progress doesn't match the progress schema. Import a backup to replace it.\n${z.prettifyError(result.error)}`,
       version,
     );
   }
   return result.data;
-}
-
-export function sha256(bytes: Uint8Array): string {
-  return createHash("sha256").update(bytes).digest("hex");
 }
 
 function compareTaskIds(a: string, b: string): number {

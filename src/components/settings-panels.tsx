@@ -200,7 +200,7 @@ function ResetPanel() {
       tone="danger"
       icon={<TrashIcon />}
       title="Reset progress"
-      description="Clears every ticked task, note, rating and the start date. Export a backup first, because this can't be undone."
+      description="Clears every ticked task, note, rating and the start date on your account. Export a backup first, because this can't be undone."
     >
       <label className="block text-sm text-ink-2">
         Type <span className="rounded bg-surface-2 px-1.5 py-0.5 font-mono text-xs font-semibold text-ink">{RESET_WORD}</span> to confirm

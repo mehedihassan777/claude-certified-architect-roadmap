@@ -33,6 +33,12 @@ async function request<T>(path: string, schema: z.ZodType<T>, init: RequestInit 
     throw new ApiError(0, "Can't reach the server. Check your connection.");
   }
   const body: unknown = await response.json().catch(() => null);
+  if (response.status === 401 && typeof window !== "undefined") {
+    // The session expired or was signed out elsewhere: sign in again, then come back here. A full
+    // page load on purpose: this runs outside React, and it drops all state from the old session.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
+    window.location.assign(`/login?next=${encodeURIComponent(window.location.pathname)}`);
+  }
   if (!response.ok) {
     const parsed = ErrorSchema.safeParse(body);
     throw new ApiError(

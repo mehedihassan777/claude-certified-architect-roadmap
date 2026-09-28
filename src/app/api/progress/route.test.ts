@@ -1,26 +1,43 @@
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
-import os from "node:os";
-import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { emptyProgress } from "@/lib/progress/schema";
+import { MemoryRows } from "@/lib/storage/memory-rows";
 import { GET as exportProgress } from "./export/route";
 import { POST as importProgress } from "./import/route";
 import { GET, PATCH } from "./route";
 
 const BASE = "http://localhost:3000";
-let dir: string;
-let file: string;
 
-beforeEach(async () => {
-  dir = await mkdtemp(path.join(os.tmpdir(), "cca-api-"));
-  file = path.join(dir, "progress.json");
-  vi.stubEnv("STORAGE_DRIVER", "file");
-  vi.stubEnv("PROGRESS_FILE_PATH", file);
+// The handlers run for real; only the session lookup is replaced: the signed-in user (or none)
+// gets a SupabaseStore over in-memory rows instead of the Supabase table.
+const session = vi.hoisted(() => ({ userId: "alice" as string | null, rows: null as unknown }));
+
+vi.mock("@/lib/progress/server", async () => {
+  const { HttpError } = await import("@/lib/api/http");
+  const { DAY_NUMBERS, TASK_IDS } = await import("@/lib/content");
+  const { SupabaseStore } = await import("@/lib/storage/supabase-store");
+  return {
+    serverDeps: async () => {
+      if (!session.userId) throw new HttpError(401, "Sign in to continue.");
+      return {
+        store: new SupabaseStore(session.rows as MemoryRows, session.userId),
+        lockKey: session.userId,
+        taskIds: TASK_IDS,
+        dayNumbers: DAY_NUMBERS,
+      };
+    },
+  };
 });
 
-afterEach(async () => {
-  vi.unstubAllEnvs();
-  await rm(dir, { recursive: true, force: true });
+let rows: MemoryRows;
+
+beforeEach(() => {
+  rows = new MemoryRows();
+  session.rows = rows;
+  session.userId = "alice";
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
 });
 
 function send(
@@ -134,17 +151,16 @@ describe("POST /api/progress/import", () => {
     expect((await response.json()).details).toEqual(expect.any(String));
   });
 
-  it("is the way to recover from a corrupt file", async () => {
-    await mkdir(dir, { recursive: true });
-    await writeFile(file, "{ corrupted");
+  it("is the way to recover from a corrupt document", async () => {
+    rows.rows.set("alice", { data: { schemaVersion: 1, broken: true }, version: 3 });
 
     const broken = await getProgress();
     expect(broken.status).toBe(500);
-    expect((await broken.json()).error).toContain("Fix the file or import a backup");
+    expect((await broken.json()).error).toContain("Import a backup to replace it");
 
     const patched = await patchProgress({ ops: [{ type: "setTask", taskId: "d01-t1", done: true }] });
     expect(patched.status).toBe(500);
-    expect(await readFile(file, "utf8")).toBe("{ corrupted");
+    expect(rows.rows.get("alice")?.version).toBe(3);
 
     const imported = await send(importProgress, "POST", "/api/progress/import", emptyProgress(new Date()));
     expect(imported.status).toBe(200);
@@ -152,11 +168,23 @@ describe("POST /api/progress/import", () => {
   });
 });
 
-describe("configuration errors", () => {
-  it("answers 503 with the reason when STORAGE_DRIVER is invalid", async () => {
-    vi.stubEnv("STORAGE_DRIVER", "s3");
-    const response = await getProgress();
-    expect(response.status).toBe(503);
-    expect((await response.json()).error).toContain('STORAGE_DRIVER must be "file" or "github"');
+describe("sessions", () => {
+  it("answers 401 on every route when nobody is signed in", async () => {
+    session.userId = null;
+    for (const response of [
+      await getProgress(),
+      await patchProgress({ ops: [{ type: "setTask", taskId: "d01-t1", done: true }] }),
+      await send(exportProgress, "GET", "/api/progress/export"),
+      await send(importProgress, "POST", "/api/progress/import", emptyProgress(new Date())),
+    ]) {
+      expect(response.status).toBe(401);
+    }
+  });
+
+  it("keeps each user's progress separate", async () => {
+    await patchProgress({ ops: [{ type: "setTask", taskId: "d01-t1", done: true }] });
+    session.userId = "bob";
+    const { progress } = await (await getProgress()).json();
+    expect(progress.tasks).toEqual({});
   });
 });

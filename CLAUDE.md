@@ -1,12 +1,12 @@
 # CCA-F Roadmap
 
-Self-hosted Next.js tracker for a 42-day study plan for the Claude Certified Architect – Foundations exam. Single user, no database: progress is one JSON file.
+Next.js tracker for a 42-day study plan for the Claude Certified Architect – Foundations exam. Multi-user on Supabase: anyone can register (Supabase Auth, email + password), each account's progress is one JSON document in its own row, and one admin account (`ADMIN_USER_ID`) sees everyone on `/admin`.
 
 - Brief: `docs/SPEC.md`. Approved plan, schemas and stage status: `docs/PLAN.md`. Verified exam facts, task-statement map and opened sources: `docs/RESEARCH.md`.
 - Next.js 16 agent rules: @AGENTS.md. The docs for the installed version are in `node_modules/next/dist/docs/`.
 
 ## Workflow
-Stages: (a) scaffold, storage, API, tests → (b) UI → (c) content, one week at a time, each checked against its sources → (d) auth, deployment, README. Stop after each stage for the user's review, and commit only once they approve it. Until stage (c), `content/` holds generated placeholder weeks.
+Stages: (a) scaffold, storage, API, tests → (b) UI → Supabase accounts and admin (done ahead of (c); see PLAN §7) → (c) content, one week at a time, each checked against its sources → (d) deployment, README. Stop after each stage for the user's review, and commit only once they approve it. Until stage (c), `content/` holds generated placeholder weeks.
 
 ## Commands
 - `npm run dev` / `npm run build` / `npm start`
@@ -16,7 +16,10 @@ Stages: (a) scaffold, storage, API, tests → (b) UI → (c) content, one week a
 ## Where things live
 - `src/lib/content/`: the schema, integrity rules, and loaders. `index.ts` loads content for the app and `load.ts` reads it from disk for the tests and `content:check`.
 - `src/lib/progress/`: the progress schema, the pure `apply.ts`, and `service.ts` (the read → apply → write cycle with conflict retry).
-- `src/lib/storage/`: `FileStore`, `GitHubStore` and `getStore()`.
+- `src/lib/storage/`: `SupabaseStore` over a `ProgressRows` interface (`supabaseProgressRows()` in production, `MemoryRows` in tests).
+- `src/lib/auth.ts` (`getAuth()`, `getCurrentUser()`), `src/lib/supabase/` (per-request server client; secret-key admin client), `src/proxy.ts` (session refresh and sign-in gate).
+- `src/app/(app)/`: signed-in pages, including `admin/`. `src/app/(auth)/`: login, register and their server actions. `src/app/auth/confirm/`: the email-confirmation link.
+- `supabase/migrations/`: the `progress` table, grants and RLS policies.
 - `src/lib/api/http.ts`: the route-handler wrapper, the error → status mapping and the same-origin check.
 
 ## Rules that must not break
@@ -46,18 +49,19 @@ Stages: (a) scaffold, storage, API, tests → (b) UI → (c) content, one week a
 
 Operations (PATCH `/api/progress`, body `{ ops: [...] }`): `setTask { taskId, done }` · `setNotes { day, notes }` · `setConfidence { day, value }` · `setStartDate { date }`.
 
-## Storage (`STORAGE_DRIVER`)
+## Storage and accounts (Supabase)
 `ProgressStore`: `read() → { data, version }`, `write(data, expectedVersion)` throws `VersionConflictError`.
-- `file` (default; VPS/Docker): `PROGRESS_FILE_PATH` (default `./data/progress.json`). The file is created on first read, writes take an in-process lock, and each write goes to a temp file that is renamed over the original.
-- `github` (Vercel/Netlify): GitHub Contents API on a separate private repo (`GITHUB_TOKEN`, `GITHUB_REPO`, `GITHUB_BRANCH`, `GITHUB_PROGRESS_PATH`). The file's sha is the version.
-- On conflict: re-read, re-apply the same operations, retry up to 3 times.
-- A stored file that fails validation is never overwritten by an operation. Only an explicit import replaces it.
+- Table `public.progress`: `user_id` (PK, FK to `auth.users`, on delete cascade), `data` jsonb, `version` bigint, `updated_at`. The row is created on first read.
+- Writes are `update … where user_id = ? and version = ?` with `version + 1`; no matching row means a conflict. On conflict: re-read, re-apply the same operations, retry up to 3 times.
+- Progress queries use the signed-in user's client, so RLS limits them to their own row. Only the admin page uses `SUPABASE_SECRET_KEY` (server-only, bypasses RLS), and only after checking `ADMIN_USER_ID`.
+- A stored document that fails validation is never overwritten by an operation. Only an explicit import replaces it.
+- Env: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (required), `SUPABASE_SECRET_KEY`, `ADMIN_USER_ID` (admin page).
 
 ## Conventions
 - **Route handlers:**
   - They use the default Node runtime and never export `runtime`.
   - Cache Components stays off, so they aren't cached, and responses send `Cache-Control: no-store`.
-  - Auth is checked in `proxy.ts` (Next 16's name for middleware) and again inside each API handler.
+  - Auth is checked in `proxy.ts` (Next 16's name for middleware) and again inside each API handler, page layout and server action. Server code verifies the user with `getClaims()`, never `getSession()`.
 - **Types:** TypeScript strict, with Zod at every boundary (env, content, request bodies, stored JSON).
 - **Toolchain pins (don't bump blindly):**
   - TypeScript `~6.0`: typescript-eslint, inside eslint-config-next, requires < 6.1.

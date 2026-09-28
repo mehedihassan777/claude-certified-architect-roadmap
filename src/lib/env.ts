@@ -7,60 +7,47 @@ export class EnvError extends Error {
   }
 }
 
-const requiredForGitHub = "is required when STORAGE_DRIVER=github";
+const required = "is required";
 
-const StorageEnvSchema = z.discriminatedUnion(
-  "STORAGE_DRIVER",
-  [
-    z.object({
-      STORAGE_DRIVER: z.literal("file"),
-      PROGRESS_FILE_PATH: z.string().default("./data/progress.json"),
-    }),
-    z.object({
-      STORAGE_DRIVER: z.literal("github"),
-      GITHUB_TOKEN: z.string({ error: requiredForGitHub }),
-      GITHUB_REPO: z.string({ error: requiredForGitHub }).regex(/^[\w.-]+\/[\w.-]+$/, "must look like owner/repo"),
-      GITHUB_BRANCH: z.string().regex(/^[\w./-]+$/, "is not a valid branch name").default("main"),
-      GITHUB_PROGRESS_PATH: z
-        .string()
-        .regex(/^(?!\/)(?!.*\.\.)[\w./-]+\.json$/, "must be a relative path to a .json file")
-        .default("progress.json"),
-    }),
-  ],
-  { error: 'must be "file" or "github"' },
-);
+const SupabaseEnvSchema = z.object({
+  // http is allowed for a local Supabase started with the CLI (http://127.0.0.1:54321).
+  NEXT_PUBLIC_SUPABASE_URL: z.url({ protocol: /^https?$/, error: "must be the project URL, e.g. https://abc.supabase.co" }).optional(),
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().optional(),
+  SUPABASE_SECRET_KEY: z.string().optional(),
+  ADMIN_USER_ID: z.uuid({ error: "must be a user UUID from Supabase → Authentication → Users" }).optional(),
+});
 
 /** Environment variables as read here; process.env satisfies it. */
 export type Env = Readonly<Record<string, string | undefined>>;
 
-export type StorageConfig =
-  | { driver: "file"; filePath: string }
-  | { driver: "github"; token: string; repo: string; branch: string; path: string };
+export interface SupabaseConfig {
+  url: string;
+  publishableKey: string;
+  /** Server-only; bypasses RLS. Needed only by the admin page. */
+  secretKey: string | null;
+  /** The one account that may open /admin. */
+  adminUserId: string | null;
+}
 
-/** Reads the storage settings; blank values count as unset. Error messages never include values. */
-export function getStorageConfig(env: Env = process.env): StorageConfig {
+/** Reads the Supabase settings; blank values count as unset. Error messages never include values. */
+export function getSupabaseConfig(env: Env = process.env): SupabaseConfig {
   const value = (name: string) => env[name]?.trim() || undefined;
-  const parsed = StorageEnvSchema.safeParse({
-    STORAGE_DRIVER: value("STORAGE_DRIVER") ?? "file",
-    PROGRESS_FILE_PATH: value("PROGRESS_FILE_PATH"),
-    GITHUB_TOKEN: value("GITHUB_TOKEN"),
-    GITHUB_REPO: value("GITHUB_REPO"),
-    GITHUB_BRANCH: value("GITHUB_BRANCH"),
-    GITHUB_PROGRESS_PATH: value("GITHUB_PROGRESS_PATH"),
+  const parsed = SupabaseEnvSchema.safeParse({
+    NEXT_PUBLIC_SUPABASE_URL: value("NEXT_PUBLIC_SUPABASE_URL"),
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: value("NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY"),
+    SUPABASE_SECRET_KEY: value("SUPABASE_SECRET_KEY"),
+    ADMIN_USER_ID: value("ADMIN_USER_ID"),
   });
-  if (!parsed.success) {
-    const problems = parsed.error.issues.map((issue) => `${issue.path.join(".") || "STORAGE_DRIVER"} ${issue.message}`);
-    throw new EnvError(`Invalid storage configuration: ${problems.join("; ")}`);
-  }
+  const problems = parsed.success ? [] : parsed.error.issues.map((issue) => `${issue.path.join(".")} ${issue.message}`);
+  const vars = parsed.success ? parsed.data : null;
+  if (vars && !vars.NEXT_PUBLIC_SUPABASE_URL) problems.push(`NEXT_PUBLIC_SUPABASE_URL ${required}`);
+  if (vars && !vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY) problems.push(`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ${required}`);
+  if (!vars || problems.length > 0) throw new EnvError(`Invalid Supabase configuration: ${problems.join("; ")}`);
 
-  const vars = parsed.data;
-  return vars.STORAGE_DRIVER === "file"
-    ? { driver: "file", filePath: vars.PROGRESS_FILE_PATH }
-    : {
-        driver: "github",
-        token: vars.GITHUB_TOKEN,
-        repo: vars.GITHUB_REPO,
-        branch: vars.GITHUB_BRANCH,
-        path: vars.GITHUB_PROGRESS_PATH,
-      };
+  return {
+    url: vars.NEXT_PUBLIC_SUPABASE_URL!,
+    publishableKey: vars.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,
+    secretKey: vars.SUPABASE_SECRET_KEY ?? null,
+    adminUserId: vars.ADMIN_USER_ID?.toLowerCase() ?? null,
+  };
 }

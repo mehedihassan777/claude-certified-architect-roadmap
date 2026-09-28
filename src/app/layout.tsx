@@ -1,10 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
-import { ProgressProvider } from "@/client/progress-provider";
 import { THEME_SCRIPT } from "@/client/theme-script";
-import { SiteHeader } from "@/components/site-header";
-import { WEEKS } from "@/lib/content";
-import { buildContentIndex } from "@/lib/content/summary";
 import "./globals.css";
 
 const geistSans = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
@@ -23,8 +19,6 @@ export const viewport: Viewport = {
   ],
 };
 
-const CONTENT_INDEX = buildContentIndex(WEEKS);
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -37,18 +31,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
       <body className="min-h-full">
-        <ProgressProvider index={CONTENT_INDEX}>
-          <a
-            href="#main"
-            className="sr-only z-50 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-accent-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-          >
-            Skip to content
-          </a>
-          <SiteHeader />
-          <main id="main" className="mx-auto w-full max-w-6xl px-4 pt-6 pb-16 sm:px-6 sm:pt-10">
-            {children}
-          </main>
-        </ProgressProvider>
+        <a
+          href="#main"
+          className="sr-only z-50 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-accent-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to content
+        </a>
+        {children}
       </body>
     </html>
   );

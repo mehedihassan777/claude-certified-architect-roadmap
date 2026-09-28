@@ -5,13 +5,15 @@ import {
   type ProgressStore,
   type StoredProgress,
 } from "@/lib/storage/types";
-import { applyOperations, describeOperations } from "./apply";
+import { applyOperations } from "./apply";
 import type { Operation, Progress } from "./schema";
 
 export const MAX_CONFLICT_RETRIES = 3;
 
 export interface ProgressDeps {
   store: ProgressStore;
+  /** Serializes read-apply-write cycles in this process; one key per user. */
+  lockKey: string;
   taskIds: ReadonlySet<string>;
   dayNumbers: ReadonlySet<number>;
   clock?: () => Date;
@@ -24,14 +26,14 @@ export interface ImportResult extends StoredProgress {
   orphans: string[];
 }
 
-// One read-apply-write cycle per store at a time in this process, so conflicts only come from
-// other processes or devices.
-const queues = new WeakMap<ProgressStore, Promise<unknown>>();
+// One read-apply-write cycle per user at a time in this process, so conflicts only come from
+// other server instances or devices. Each entry is replaced by its latest task's tail.
+const queues = new Map<string, Promise<unknown>>();
 
 /** Read, apply every op, write. On a version conflict: re-read, re-apply, up to 3 retries. */
 export function updateProgress(ops: readonly Operation[], deps: ProgressDeps): Promise<StoredProgress> {
   const clock = deps.clock ?? (() => new Date());
-  return runExclusive(queues, deps.store, () =>
+  return runExclusive(queues, deps.lockKey, () =>
     withConflictRetry(deps, async () => {
       const current = await deps.store.read();
       const next = applyOperations(current.data, ops, {
@@ -40,24 +42,22 @@ export function updateProgress(ops: readonly Operation[], deps: ProgressDeps): P
         now: clock().toISOString(),
       });
       if (next === current.data) return current;
-      const { version } = await deps.store.write(next, current.version, { message: describeOperations(ops) });
+      const { version } = await deps.store.write(next, current.version);
       return { data: next, version };
     }),
   );
 }
 
-/** Full replace (import, reset). This is also the only way to replace a corrupt stored file. */
+/** Full replace (import, reset). This is also the only way to replace a corrupt stored document. */
 export function replaceProgress(data: Progress, deps: ProgressDeps): Promise<ImportResult> {
   const clock = deps.clock ?? (() => new Date());
   const orphans = Object.keys(data.tasks)
     .filter((id) => !deps.taskIds.has(id))
     .sort();
-  return runExclusive(queues, deps.store, () =>
+  return runExclusive(queues, deps.lockKey, () =>
     withConflictRetry(deps, async () => {
       const next: Progress = { ...data, updatedAt: clock().toISOString() };
-      const { version } = await deps.store.write(next, await currentVersion(deps.store), {
-        message: "progress: import",
-      });
+      const { version } = await deps.store.write(next, await currentVersion(deps.store));
       return { data: next, version, orphans };
     }),
   );
@@ -70,8 +70,7 @@ async function withConflictRetry<T>(deps: ProgressDeps, attempt: () => Promise<T
       return await attempt();
     } catch (error) {
       if (!(error instanceof VersionConflictError) || retry >= MAX_CONFLICT_RETRIES) throw error;
-      // Jittered backoff also gives GitHub a moment to serve the newest sha.
-      await sleep(50 * 2 ** retry * (0.5 + Math.random()));
+            await sleep(50 * 2 ** retry * (0.5 + Math.random()));
     }
   }
 }

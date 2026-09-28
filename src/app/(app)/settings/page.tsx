@@ -8,7 +8,7 @@ export default function SettingsPage() {
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
         <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">Settings</h1>
-        <p className="mt-1.5 text-ink-2">Your schedule and your data. Progress lives in a single JSON file on the server.</p>
+        <p className="mt-1.5 text-ink-2">Your schedule and your data. Progress is saved to your account and syncs across your devices.</p>
       </div>
       <SettingsPanels />
     </div>

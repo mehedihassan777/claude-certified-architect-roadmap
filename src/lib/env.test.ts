@@ -1,51 +1,52 @@
 import { describe, expect, it } from "vitest";
-import { EnvError, getStorageConfig } from "./env";
+import { EnvError, getSupabaseConfig } from "./env";
 
-describe("getStorageConfig", () => {
-  it("defaults to the file driver and ./data/progress.json", () => {
-    expect(getStorageConfig({})).toEqual({ driver: "file", filePath: "./data/progress.json" });
-  });
+const BASE = {
+  NEXT_PUBLIC_SUPABASE_URL: "https://abc.supabase.co",
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "sb_publishable_x",
+};
 
-  it("treats blank values as unset", () => {
-    expect(getStorageConfig({ STORAGE_DRIVER: " ", PROGRESS_FILE_PATH: "" })).toEqual({
-      driver: "file",
-      filePath: "./data/progress.json",
+describe("getSupabaseConfig", () => {
+  it("reads the required settings; the secret key and admin are optional", () => {
+    expect(getSupabaseConfig(BASE)).toEqual({
+      url: "https://abc.supabase.co",
+      publishableKey: "sb_publishable_x",
+      secretKey: null,
+      adminUserId: null,
     });
   });
 
-  it("reads the github settings with defaults for branch and path", () => {
-    expect(getStorageConfig({ STORAGE_DRIVER: "github", GITHUB_TOKEN: "t", GITHUB_REPO: "me/progress" })).toEqual({
-      driver: "github",
-      token: "t",
-      repo: "me/progress",
-      branch: "main",
-      path: "progress.json",
+  it("reads the secret key and a lower-cased admin user ID", () => {
+    const config = getSupabaseConfig({
+      ...BASE,
+      SUPABASE_SECRET_KEY: "sb_secret_y",
+      ADMIN_USER_ID: "3F2B8C1E-9D4A-4C6B-8E2F-1A2B3C4D5E6F",
     });
+    expect(config.secretKey).toBe("sb_secret_y");
+    expect(config.adminUserId).toBe("3f2b8c1e-9d4a-4c6b-8e2f-1a2b3c4d5e6f");
   });
 
-  it("names every missing github setting", () => {
-    expect(() => getStorageConfig({ STORAGE_DRIVER: "github" })).toThrow(
-      "GITHUB_TOKEN is required when STORAGE_DRIVER=github; GITHUB_REPO is required when STORAGE_DRIVER=github",
+  it("treats blank values as unset and names every missing setting", () => {
+    expect(() => getSupabaseConfig({ NEXT_PUBLIC_SUPABASE_URL: " " })).toThrow(
+      "NEXT_PUBLIC_SUPABASE_URL is required; NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY is required",
     );
   });
 
+  it("allows a local http URL and rejects other schemes", () => {
+    expect(getSupabaseConfig({ ...BASE, NEXT_PUBLIC_SUPABASE_URL: "http://127.0.0.1:54321" }).url).toBe("http://127.0.0.1:54321");
+    expect(() => getSupabaseConfig({ ...BASE, NEXT_PUBLIC_SUPABASE_URL: "ftp://abc" })).toThrow("NEXT_PUBLIC_SUPABASE_URL must be the project URL");
+  });
+
   it("never echoes values in its errors", () => {
-    const secret = "github_pat_should_not_leak";
+    const secret = "not-a-uuid-sb_secret_leak";
     let message = "";
     try {
-      getStorageConfig({ STORAGE_DRIVER: "github", GITHUB_TOKEN: secret, GITHUB_REPO: secret });
+      getSupabaseConfig({ ...BASE, ADMIN_USER_ID: secret });
     } catch (error) {
       expect(error).toBeInstanceOf(EnvError);
       message = (error as Error).message;
     }
-    expect(message).toContain("GITHUB_REPO must look like owner/repo");
+    expect(message).toContain("ADMIN_USER_ID must be a user UUID");
     expect(message).not.toContain(secret);
-  });
-
-  it("rejects an unknown driver and unsafe progress paths", () => {
-    expect(() => getStorageConfig({ STORAGE_DRIVER: "s3" })).toThrow('STORAGE_DRIVER must be "file" or "github"');
-    expect(() =>
-      getStorageConfig({ STORAGE_DRIVER: "github", GITHUB_TOKEN: "t", GITHUB_REPO: "a/b", GITHUB_PROGRESS_PATH: "../x.json" }),
-    ).toThrow("GITHUB_PROGRESS_PATH must be a relative path to a .json file");
   });
 });

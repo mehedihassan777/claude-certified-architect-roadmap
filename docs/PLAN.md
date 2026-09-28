@@ -1,6 +1,6 @@
 # Implementation plan
 
-Status: **approved 2026-09-28**, with all four decisions in §6 accepted. Stage (a), covering scaffold, storage, API and tests, and stage (b), the UI, were built 2026-09-28 and are awaiting review. Brief: [SPEC.md](SPEC.md). Research log: [RESEARCH.md](RESEARCH.md).
+Status: **approved 2026-09-28**, with all four decisions in §6 accepted. Stages (a) and (b) were approved and pushed 2026-09-28. On 2026-09-29 the user replaced the JSON-file storage with Supabase and added accounts and an admin (§7); that change is built and awaiting review. Brief: [SPEC.md](SPEC.md). Research log: [RESEARCH.md](RESEARCH.md).
 
 ## 1. What Step 0 changed
 
@@ -327,3 +327,17 @@ Mock days run about 150 minutes. Every other day aims for 60–120.
 4. **Git.** This folder isn't a repo yet. Run `git init` in stage (a), and commit at the end of each stage you approve? *Default: init yes, commit only when you say so.*
 
 **Heads-up.** Stages (a) and (b) need 42 valid days before stage (c) exists, so they use generated, schema-valid placeholder content with the titles above. Their task IDs are replaced in stage (c), and the stable-ID rule applies from then on. Don't record real progress until stage (c) lands.
+
+## 7. Change: Supabase, accounts and an admin (2026-09-29)
+
+Requested after deploying to Vercel, where the file driver can't write. This replaces "no database" and "single user" from the brief. Decisions (user, 2026-09-29):
+
+- **Users:** anyone can register and gets separate progress. One admin account.
+- **Auth:** Supabase Auth, email + password, verified server-side with `getClaims()`. Sessions live in cookies set by `@supabase/ssr`; `proxy.ts` refreshes them and gates pages (redirect to `/login?next=…`) and `/api/*` (401). Layouts, handlers and server actions check again.
+- **Storage:** one row per user in `public.progress` holding the same progress JSON document (jsonb) plus an integer version. `applyOperation`, the conflict retry, import, export and reset are unchanged.
+- **Drivers:** the file and github drivers are removed; Supabase only. Local dev uses a Supabase project (or the Supabase CLI).
+- **Admin:** `ADMIN_USER_ID` (a user UUID, not an email, so nobody can claim admin by registering an address first). `/admin` lists accounts with progress, last activity and sign-in, and can delete an account (its row cascades). It uses the secret key server-side only. New sign-ups are switched off in the Supabase dashboard, not in the app.
+- **Email confirmation:** `/auth/confirm` accepts both the default `?code=` link and a `?token_hash=&type=` template.
+- **Security:** RLS limits every progress query to the caller's row; the migration revokes table grants from `anon` and grants only select/insert/update to `authenticated`. `?next=` accepts relative paths only.
+- **Stage (d)** keeps deployment files and the README; its auth work is done here.
+

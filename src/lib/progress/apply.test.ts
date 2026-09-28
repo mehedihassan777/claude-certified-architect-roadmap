@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applyOperation, applyOperations, describeOperations, OperationError, type ApplyContext } from "./apply";
+import { applyOperation, applyOperations, OperationError, type ApplyContext } from "./apply";
 import { emptyProgress, ProgressSchema, type Operation, type Progress } from "./schema";
 
 const T0 = "2026-10-01T08:00:00.000Z";
@@ -144,20 +144,5 @@ describe("applyOperations", () => {
   it("produces documents that satisfy the progress schema", () => {
     const next = applyOperations(fresh(), [...batch, { type: "setTask", taskId: "d02-t1", done: true }], ctx());
     expect(ProgressSchema.safeParse(next).success).toBe(true);
-  });
-});
-
-describe("describeOperations", () => {
-  it("summarizes a batch for a commit message", () => {
-    expect(describeOperations([{ type: "setTask", taskId: "d07-t3", done: true }])).toBe("progress: d07-t3 done");
-    expect(
-      describeOperations([
-        { type: "setNotes", day: 7, notes: "a" },
-        { type: "setNotes", day: 7, notes: "ab" },
-        { type: "setConfidence", day: 7, value: null },
-        { type: "setStartDate", date: "2026-10-01" },
-        { type: "setTask", taskId: "d07-t1", done: false },
-      ]),
-    ).toBe("progress: day 7 notes, day 7 confidence cleared, start date 2026-10-01 and 1 more");
   });
 });

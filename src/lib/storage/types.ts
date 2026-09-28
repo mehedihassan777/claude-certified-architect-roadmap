@@ -5,16 +5,11 @@ export interface StoredProgress {
   version: string;
 }
 
-export interface WriteOptions {
-  /** Commit message (github driver). */
-  message?: string;
-}
-
 export interface ProgressStore {
   /** The stored document and its version. An empty document is created if none exists yet. */
   read(): Promise<StoredProgress>;
   /** Replaces the document if it's still at `expectedVersion`; otherwise throws VersionConflictError. */
-  write(data: Progress, expectedVersion: string, options?: WriteOptions): Promise<{ version: string }>;
+  write(data: Progress, expectedVersion: string): Promise<{ version: string }>;
 }
 
 /** The stored document changed after it was read. */
@@ -36,7 +31,7 @@ export class CorruptProgressError extends Error {
   }
 }
 
-/** Storage failed or refused the request: an I/O error, a GitHub outage or a bad token. */
+/** Storage failed or refused the request: a Supabase outage, a missing table or a bad key. */
 export class StoreUnavailableError extends Error {
   constructor(message: string, options?: ErrorOptions) {
     super(message, options);

@@ -63,25 +63,3 @@ function updateDay(
   if (next.notes === current.notes && next.confidence === current.confidence) return progress;
   return { ...progress, days: { ...progress.days, [key]: next }, updatedAt: ctx.now };
 }
-
-/** A short summary of a batch, used as the commit message by the github driver. */
-export function describeOperations(ops: readonly Operation[]): string {
-  const parts = [
-    ...new Set(
-      ops.map((op) => {
-        switch (op.type) {
-          case "setTask":
-            return `${op.taskId} ${op.done ? "done" : "not done"}`;
-          case "setNotes":
-            return `day ${op.day} notes`;
-          case "setConfidence":
-            return `day ${op.day} confidence ${op.value ?? "cleared"}`;
-          case "setStartDate":
-            return `start date ${op.date ?? "cleared"}`;
-        }
-      }),
-    ),
-  ];
-  const shown = parts.slice(0, 3).join(", ");
-  return `progress: ${shown}${parts.length > 3 ? ` and ${parts.length - 3} more` : ""}`;
-}

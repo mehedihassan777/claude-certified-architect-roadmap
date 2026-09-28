@@ -49,7 +49,7 @@ class MemoryStore implements ProgressStore {
 }
 
 function deps(store: ProgressStore): ProgressDeps {
-  return { store, taskIds: TASK_IDS, dayNumbers: DAY_NUMBERS, clock: () => new Date(NOW), sleep: async () => {} };
+  return { store, lockKey: "user-1", taskIds: TASK_IDS, dayNumbers: DAY_NUMBERS, clock: () => new Date(NOW), sleep: async () => {} };
 }
 
 function tick(taskId: string): Operation[] {

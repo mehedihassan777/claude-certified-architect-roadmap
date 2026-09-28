@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "@/app/(auth)/actions";
 import { useProgress } from "@/client/progress-provider";
 import { setThemePreference, useThemePreference, type ThemePreference } from "@/client/theme";
 import { AlertIcon, CloudCheckIcon, LogoMark, MonitorIcon, MoonIcon, SpinnerIcon, SunIcon } from "./icons";
@@ -13,8 +14,14 @@ const NAV = [
   { href: "/settings", label: "Settings" },
 ] as const;
 
-export function SiteHeader() {
+export interface HeaderUser {
+  email: string | null;
+  isAdmin: boolean;
+}
+
+export function SiteHeader({ user }: { user: HeaderUser }) {
   const pathname = usePathname();
+  const nav = user.isAdmin ? [...NAV, { href: "/admin", label: "Admin" } as const] : NAV;
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href) || (href === "/roadmap" && pathname.startsWith("/day")));
 
   return (
@@ -25,7 +32,7 @@ export function SiteHeader() {
           <span className="hidden font-display text-[17px] font-semibold tracking-tight sm:inline">CCA-F Roadmap</span>
         </Link>
         <nav aria-label="Main" className="flex min-w-0 items-center gap-0.5">
-          {NAV.map((item) => (
+          {nav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -42,6 +49,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-1">
           <SaveStatus />
           <ThemeToggle />
+          <AccountMenu user={user} />
         </div>
       </div>
     </header>
@@ -107,5 +115,34 @@ function ThemeToggle() {
     >
       <IconFor className="size-[18px]" />
     </button>
+  );
+}
+
+function AccountMenu({ user }: { user: HeaderUser }) {
+  const initial = (user.email?.[0] ?? "?").toUpperCase();
+  return (
+    <details className="group relative">
+      <summary
+        aria-label="Account"
+        className="flex size-9 cursor-pointer list-none items-center justify-center rounded-full bg-surface-2 text-sm font-semibold text-ink-2 ring-accent transition-colors select-none hover:bg-surface-3 group-open:ring-2 [&::-webkit-details-marker]:hidden"
+      >
+        {initial}
+      </summary>
+      <div className="absolute right-0 z-40 mt-2 w-64 rounded-2xl border border-line bg-surface p-2 shadow-lg">
+        <div className="px-3 py-2">
+          <p className="text-xs text-ink-3">Signed in as</p>
+          <p className="truncate text-sm font-medium" title={user.email ?? undefined}>
+            {user.email ?? "Unknown email"}
+          </p>
+          {user.isAdmin ? <p className="mt-1 inline-block rounded-md bg-accent-soft px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-accent-soft-ink uppercase">Admin</p> : null}
+        </div>
+        <div className="my-1 h-px bg-line" />
+        <form action={signOut}>
+          <button type="submit" className="w-full rounded-lg px-3 py-2 text-left text-sm font-medium text-ink-2 transition-colors hover:bg-surface-2 hover:text-ink">
+            Sign out
+          </button>
+        </form>
+      </div>
+    </details>
   );
 }
