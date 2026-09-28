@@ -1,6 +1,6 @@
 # Implementation plan
 
-Status: **approved 2026-09-28**, with all four decisions in §6 accepted. Stage (a) is in progress. Brief: [SPEC.md](SPEC.md). Research log: [RESEARCH.md](RESEARCH.md).
+Status: **approved 2026-09-28**, with all four decisions in §6 accepted. Stage (a), covering scaffold, storage, API and tests, and stage (b), the UI, were built 2026-09-28 and are awaiting review. Brief: [SPEC.md](SPEC.md). Research log: [RESEARCH.md](RESEARCH.md).
 
 ## 1. What Step 0 changed
 
@@ -98,11 +98,11 @@ Import is strict about shape. Well-formed task IDs that aren't in the content ar
 
 ### File tree
 
-Letters mark the stage that creates each file. Tests sit next to the code they test.
+Letters mark the stage that creates each file; stage (a) entries match what was built. Tests sit next to the code they test.
 
 ```
-├── CLAUDE.md · README.md (d) · .env.example (a, d) · package.json
-├── next.config.ts · tsconfig.json · eslint.config.mjs · postcss.config.mjs · vitest.config.ts
+├── CLAUDE.md · AGENTS.md · README.md (d) · .env.example (a, d) · .nvmrc · package.json
+├── next.config.ts · tsconfig.json · eslint.config.mjs · postcss.config.mjs · vitest.config.mts
 ├── Dockerfile · .dockerignore · docker-compose.yml             (d)
 ├── docs/        SPEC.md · RESEARCH.md · PLAN.md
 ├── content/     week-1.json … week-6.json · sources.json       (placeholders a, real c)
@@ -110,16 +110,16 @@ Letters mark the stage that creates each file. Tests sit next to the code they t
 ├── scripts/     content-check.ts                               (a)
 └── src/
     ├── proxy.ts                          auth gate (d)
-    ├── instrumentation.ts                env check at boot (a)
+    ├── instrumentation.ts                storage settings checked at boot (a)
     ├── app/
-    │   ├── layout.tsx · globals.css      shell, nav, theme, ProgressProvider (b)
-    │   ├── page.tsx                      dashboard (b)
+    │   ├── layout.tsx · globals.css      shell (a); nav, theme, ProgressProvider (b)
+    │   ├── page.tsx                      placeholder list of days (a); dashboard (b)
     │   ├── roadmap/page.tsx              (b)
     │   ├── day/[n]/page.tsx              static params 1–42 (b)
     │   ├── settings/page.tsx             (b)
     │   ├── login/page.tsx · actions.ts   (d)
     │   └── api/progress/
-    │       ├── route.ts · route.test.ts  GET, PATCH (a)
+    │       ├── route.ts · route.test.ts  GET, PATCH; the test covers all three routes (a)
     │       ├── export/route.ts           GET (a)
     │       └── import/route.ts           POST (a)
     ├── components/                       TaskItem, SelfCheck, NotesEditor, ConfidencePicker, SaveStatus… (b)
@@ -127,14 +127,20 @@ Letters mark the stage that creates each file. Tests sit next to the code they t
     │   ├── progress-provider.tsx         optimistic store, save state, refetch on focus (b)
     │   └── api-client.ts                 (b)
     └── lib/
-        ├── env.ts · dates.ts             (a)
-        ├── content/   schema.ts · integrity.ts · index.ts · domains.ts · content.test.ts   (a)
-        ├── progress/  schema.ts · apply.ts · service.ts · *.test.ts (a) · stats.ts (b)
-        ├── storage/   types.ts · file-store.ts · github-store.ts · index.ts · *.test.ts   (a)
+        ├── env.ts · env.test.ts          storage settings (a); auth settings (d)
+        ├── dates.ts                      local-date helpers (b)
+        ├── api/       http.ts            handler wrapper, error → status mapping, same-origin check (a)
+        ├── content/   domains · rules · schema · integrity · validate · index (app) · load (disk) · content.test (a)
+        ├── progress/  schema · apply · service · server · *.test (a) · stats (b)
+        ├── storage/   types · codec · lock · file-store · github-store · index · *.test (a)
         └── auth/      session.ts · session.test.ts   (d)
 ```
 
-`domains.ts` holds the domain labels, exam weights and the 30 task statements.
+- `domains.ts` holds the domain labels, exam weights and the 30 task statements. `rules.ts` holds the numeric content rules.
+- `content/index.ts` imports the JSON for the app, and `load.ts` reads the same files from disk for the tests and `content:check`. Both go through `validate.ts`.
+- `storage/codec.ts` writes stable JSON (fixed key order, tasks sorted) and parses stored bytes; a BOM is fine.
+
+**Stage (d) note:** the same-origin check compares `Origin` with `X-Forwarded-Host` or `Host`, like Next's own Server Actions check. Behind a reverse proxy, the proxy must forward the public host (`proxy_set_header Host $host;` in nginx). The README needs to say so.
 
 ## 4. Schemas
 

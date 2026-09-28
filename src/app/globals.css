@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* The inline script in layout.tsx sets data-theme on <html> before first paint. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #f0eee8;
+  --surface-3: #e7e4dc;
+  --line: #e3e0d8;
+  --line-strong: #cfcbc1;
+  --ink: #1c1b18;
+  --ink-2: #57544d;
+  --ink-3: #8a867d;
+  --accent: #b9532f;
+  --accent-hover: #a2462a;
+  --accent-ink: #ffffff;
+  --accent-soft: #f7e6dd;
+  --accent-soft-ink: #8f3d20;
+  --good: #1f7a50;
+  --good-soft: #dff1e7;
+  --warn: #9a6200;
+  --warn-soft: #fbefd6;
+  --bad: #b8322c;
+  --bad-soft: #fbe3e1;
+  --ring: rgb(185 83 47 / 0.35);
+  --shadow: 0 1px 2px rgb(28 27 24 / 0.04), 0 1px 3px rgb(28 27 24 / 0.06);
+
+  /* Domain identity: reference categorical slots 1–6, exam domains in exam order (validated). */
+  --domain-agentic-architecture: #2a78d6;
+  --domain-tool-design-mcp: #eb6834;
+  --domain-claude-code: #1baf7a;
+  --domain-prompt-engineering: #eda100;
+  --domain-context-management: #e87ba4;
+  --domain-foundations: #4a3aa7;
+  --domain-exam-practice: #8a867d;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121210;
+  --surface: #1b1a18;
+  --surface-2: #242320;
+  --surface-3: #2e2c28;
+  --line: #2f2d29;
+  --line-strong: #45423c;
+  --ink: #f2f0ea;
+  --ink-2: #b6b2a8;
+  --ink-3: #807c73;
+  --accent: #e0835d;
+  --accent-hover: #ea9774;
+  --accent-ink: #1b1a18;
+  --accent-soft: #3a2419;
+  --accent-soft-ink: #f2b394;
+  --good: #4cc08a;
+  --good-soft: #15301f;
+  --warn: #e3ac4a;
+  --warn-soft: #33260f;
+  --bad: #ef7169;
+  --bad-soft: #3a1917;
+  --ring: rgb(224 131 93 / 0.4);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3);
+
+  --domain-agentic-architecture: #3987e5;
+  --domain-tool-design-mcp: #d95926;
+  --domain-claude-code: #199e70;
+  --domain-prompt-engineering: #c98500;
+  --domain-context-management: #d55181;
+  --domain-foundations: #9085e9;
+  --domain-exam-practice: #807c73;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-ink: var(--accent-soft-ink);
+  --color-good: var(--good);
+  --color-good-soft: var(--good-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-ring: var(--ring);
+  --shadow-card: var(--shadow);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+@layer base {
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--accent-soft-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+}
+
+@utility skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

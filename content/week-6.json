@@ -1,0 +1,702 @@
+{
+  "week": 6,
+  "title": "Context Management & Reliability, then exam practice",
+  "days": [
+    {
+      "day": 36,
+      "week": 6,
+      "title": "Context as a budget: what to keep, and provenance",
+      "domain": "context-management",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 36."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "5.1",
+        "5.6"
+      ],
+      "tasks": [
+        {
+          "id": "d36-t1",
+          "type": "recall",
+          "title": "Recall Day 35",
+          "details": "Placeholder until stage (c). Write Day 35's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d36-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d36-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d36-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 36. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 36. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 36. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 37,
+      "week": 6,
+      "title": "Prompt caching",
+      "domain": "context-management",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 37."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d37-t1",
+          "type": "recall",
+          "title": "Recall Day 36",
+          "details": "Placeholder until stage (c). Write Day 36's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d37-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d37-t3",
+          "type": "hands-on",
+          "title": "Build the next piece of cca-labs",
+          "details": "Placeholder until stage (c). Placeholder hands-on task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d37-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 37. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 37. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 37. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 38,
+      "week": 6,
+      "title": "Long-running agents: compaction, memory and sessions",
+      "domain": "context-management",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 38."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "1.7",
+        "5.4"
+      ],
+      "tasks": [
+        {
+          "id": "d38-t1",
+          "type": "recall",
+          "title": "Recall Day 37",
+          "details": "Placeholder until stage (c). Write Day 37's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d38-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d38-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d38-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 38. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 38. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 38. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 39,
+      "week": 6,
+      "title": "Full timed mock exam #1",
+      "domain": "exam-practice",
+      "estMinutes": 170,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 39."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d39-t1",
+          "type": "recall",
+          "title": "Recall Day 38",
+          "details": "Placeholder until stage (c). Write Day 38's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d39-t2",
+          "type": "practice",
+          "title": "Take a full timed mock exam",
+          "details": "Placeholder until stage (c). 60 questions in 120 minutes, then log every wrong answer.",
+          "estMinutes": 120,
+          "resources": [
+            {
+              "title": "Claude Certification Guide mock exam (community, not affiliated with Anthropic)",
+              "url": "https://claudecertificationguide.com/mock-exam"
+            }
+          ]
+        },
+        {
+          "id": "d39-t3",
+          "type": "revise",
+          "title": "Review the wrong-answer log",
+          "details": "Placeholder until stage (c). Placeholder revision task.",
+          "estMinutes": 30,
+          "resources": []
+        },
+        {
+          "id": "d39-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 10,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 39. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 39. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 39. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 40,
+      "week": 6,
+      "title": "Targeted revision: your two weakest domains",
+      "domain": "exam-practice",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 40."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d40-t1",
+          "type": "recall",
+          "title": "Recall Day 39",
+          "details": "Placeholder until stage (c). Write Day 39's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d40-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d40-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d40-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 40. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 40. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 40. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 41,
+      "week": 6,
+      "title": "Full timed mock exam #2",
+      "domain": "exam-practice",
+      "estMinutes": 170,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 41."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d41-t1",
+          "type": "recall",
+          "title": "Recall Day 40",
+          "details": "Placeholder until stage (c). Write Day 40's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d41-t2",
+          "type": "practice",
+          "title": "Take a full timed mock exam",
+          "details": "Placeholder until stage (c). 60 questions in 120 minutes, then log every wrong answer.",
+          "estMinutes": 120,
+          "resources": [
+            {
+              "title": "Claude Certification Guide mock exam (community, not affiliated with Anthropic)",
+              "url": "https://claudecertificationguide.com/mock-exam"
+            }
+          ]
+        },
+        {
+          "id": "d41-t3",
+          "type": "revise",
+          "title": "Review the wrong-answer log",
+          "details": "Placeholder until stage (c). Placeholder revision task.",
+          "estMinutes": 30,
+          "resources": []
+        },
+        {
+          "id": "d41-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 10,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 41. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 41. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 41. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 42,
+      "week": 6,
+      "title": "Final review and exam-day rules",
+      "domain": "exam-practice",
+      "estMinutes": 110,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 42."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d42-t1",
+          "type": "recall",
+          "title": "Recall Day 41",
+          "details": "Placeholder until stage (c). Write Day 41's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d42-t2",
+          "type": "revise",
+          "title": "Revise the week's key points",
+          "details": "Placeholder until stage (c). Placeholder revision task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d42-t3",
+          "type": "practice",
+          "title": "Scenario practice",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 30,
+          "resources": []
+        },
+        {
+          "id": "d42-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 25,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 4 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 3,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 5 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 6 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 7 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 8 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 3,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "(Select 2) Placeholder question 9 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": [
+            0,
+            2
+          ],
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "(Select 2) Placeholder question 10 for Day 42. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": [
+            0,
+            2
+          ],
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    }
+  ]
+}

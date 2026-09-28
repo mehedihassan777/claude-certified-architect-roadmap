@@ -1,0 +1,118 @@
+{
+  "sources": [
+    {
+      "url": "https://anthropic-partners.skilljar.com/claude-certified-architect-foundations-certification",
+      "title": "Claude Certified Architect – Foundations certification page",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F6nizmqk8tpzpfjvt6qmmav7rh%2Fpublic%2F1783542750%2FClaude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf",
+      "title": "Claude Certified Architect – Foundations exam guide (PDF)",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://everpath-course-content.s3-accelerate.amazonaws.com/instructor%2F34hhd92iyp94a0gtbr15cy5jk%2Fpublic%2F1782870704%2FAnthropic+Certification+Exam+Policy.pdf",
+      "title": "Anthropic certification exam policy (PDF)",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://anthropic-partners.skilljar.com/page/faq-certifications",
+      "title": "Claude Certification FAQ",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://anthropic-partners.skilljar.com/page/claude-certification-exam-prep-courses",
+      "title": "Claude certification exam prep courses",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses",
+      "title": "Claude Certified Architect – Foundations prep courses",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://anthropic.skilljar.com/",
+      "title": "Anthropic course catalog",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "title": "Building effective agents",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/intro",
+      "title": "Claude API docs: introduction",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://platform.claude.com/llms.txt",
+      "title": "Claude API docs index (llms.txt)",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://code.claude.com/docs/llms.txt",
+      "title": "Claude Code and Agent SDK docs index (llms.txt)",
+      "publisher": "anthropic",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+      "title": "MCP architecture overview",
+      "publisher": "mcp",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/llms.txt",
+      "title": "MCP docs index (llms.txt)",
+      "publisher": "mcp",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/specification/2026-07-28/changelog",
+      "title": "MCP specification 2026-07-28: key changes",
+      "publisher": "mcp",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://modelcontextprotocol.io/docs/2026-07-28/sdk",
+      "title": "MCP SDKs",
+      "publisher": "mcp",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://claudecertificationguide.com",
+      "title": "Claude Certification Guide",
+      "publisher": "community",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://claudecertificationguide.com/mock-exam",
+      "title": "Claude Certification Guide: full mock exam (60 questions, 120 minutes)",
+      "publisher": "community",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://szymonpaluch.com/blog/posts/claude-certified-architect-practice-questions",
+      "title": "Szymon Paluch: 60-question practice exam with a timed mode",
+      "publisher": "community",
+      "checkedOn": "2026-09-28"
+    },
+    {
+      "url": "https://nextjs.org/docs/app/api-reference/file-conventions/proxy",
+      "title": "Next.js proxy file convention",
+      "publisher": "other",
+      "checkedOn": "2026-09-28"
+    }
+  ]
+}

@@ -1,0 +1,707 @@
+{
+  "week": 4,
+  "title": "Claude Code Configuration & Workflows",
+  "days": [
+    {
+      "day": 22,
+      "week": 4,
+      "title": "How Claude Code works: loop, tools, permissions, plan mode",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 22."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "2.5",
+        "3.4"
+      ],
+      "tasks": [
+        {
+          "id": "d22-t1",
+          "type": "recall",
+          "title": "Recall Day 21",
+          "details": "Placeholder until stage (c). Write Day 21's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d22-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d22-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d22-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 22. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 22. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 22. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 23,
+      "week": 4,
+      "title": "CLAUDE.md hierarchy, rules and settings",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 23."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "3.1",
+        "3.3"
+      ],
+      "tasks": [
+        {
+          "id": "d23-t1",
+          "type": "recall",
+          "title": "Recall Day 22",
+          "details": "Placeholder until stage (c). Write Day 22's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d23-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d23-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d23-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 23. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 23. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 23. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 24,
+      "week": 4,
+      "title": "Slash commands, skills and iterative refinement",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 24."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "3.2",
+        "3.5"
+      ],
+      "tasks": [
+        {
+          "id": "d24-t1",
+          "type": "recall",
+          "title": "Recall Day 23",
+          "details": "Placeholder until stage (c). Write Day 23's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d24-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d24-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d24-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 24. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 24. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 24. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 25,
+      "week": 4,
+      "title": "Hooks and deterministic enforcement",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 25."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "1.4"
+      ],
+      "tasks": [
+        {
+          "id": "d25-t1",
+          "type": "recall",
+          "title": "Recall Day 24",
+          "details": "Placeholder until stage (c). Write Day 24's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d25-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d25-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d25-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 25. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 25. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 25. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 26,
+      "week": 4,
+      "title": "Subagents and MCP configuration scopes",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 26."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "2.4",
+        "3.4"
+      ],
+      "tasks": [
+        {
+          "id": "d26-t1",
+          "type": "recall",
+          "title": "Recall Day 25",
+          "details": "Placeholder until stage (c). Write Day 25's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d26-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d26-t3",
+          "type": "practice",
+          "title": "Apply it to a scenario",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d26-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 26. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 26. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 26. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 27,
+      "week": 4,
+      "title": "Headless mode, CI and independent review",
+      "domain": "claude-code",
+      "estMinutes": 95,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 27."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "taskStatements": [
+        "3.6",
+        "4.6"
+      ],
+      "tasks": [
+        {
+          "id": "d27-t1",
+          "type": "recall",
+          "title": "Recall Day 26",
+          "details": "Placeholder until stage (c). Write Day 26's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d27-t2",
+          "type": "study",
+          "title": "Study the day's topic",
+          "details": "Placeholder until stage (c). Placeholder study task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d27-t3",
+          "type": "hands-on",
+          "title": "Build the next piece of cca-labs",
+          "details": "Placeholder until stage (c). Placeholder hands-on task.",
+          "estMinutes": 25,
+          "resources": []
+        },
+        {
+          "id": "d27-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 15,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 27. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 27. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 27. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    },
+    {
+      "day": 28,
+      "week": 4,
+      "title": "Week 4 review",
+      "domain": "claude-code",
+      "estMinutes": 110,
+      "objectives": [
+        "Placeholder until stage (c). Objectives for Day 28."
+      ],
+      "keyPoints": [
+        "Placeholder key point 1.",
+        "Placeholder key point 2.",
+        "Placeholder key point 3.",
+        "Placeholder key point 4."
+      ],
+      "tasks": [
+        {
+          "id": "d28-t1",
+          "type": "recall",
+          "title": "Recall Day 27",
+          "details": "Placeholder until stage (c). Write Day 27's key points from memory, then check them.",
+          "estMinutes": 10,
+          "resources": []
+        },
+        {
+          "id": "d28-t2",
+          "type": "revise",
+          "title": "Revise the week's key points",
+          "details": "Placeholder until stage (c). Placeholder revision task.",
+          "estMinutes": 45,
+          "resources": []
+        },
+        {
+          "id": "d28-t3",
+          "type": "practice",
+          "title": "Scenario practice",
+          "details": "Placeholder until stage (c). Placeholder practice task.",
+          "estMinutes": 30,
+          "resources": []
+        },
+        {
+          "id": "d28-t4",
+          "type": "quiz",
+          "title": "Answer today's self-check questions",
+          "details": "Placeholder until stage (c). Pick an answer, then read the explanation.",
+          "estMinutes": 25,
+          "resources": []
+        }
+      ],
+      "selfCheck": [
+        {
+          "question": "Placeholder question 1 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 2 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 3 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 4 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 3,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 5 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 0,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 6 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 1,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 7 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 2,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "Placeholder question 8 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": 3,
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "(Select 2) Placeholder question 9 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": [
+            0,
+            2
+          ],
+          "explanation": "Placeholder explanation."
+        },
+        {
+          "question": "(Select 2) Placeholder question 10 for Day 28. Real exam-style questions arrive in stage (c).",
+          "options": [
+            "Option A",
+            "Option B",
+            "Option C",
+            "Option D"
+          ],
+          "answerIndex": [
+            0,
+            2
+          ],
+          "explanation": "Placeholder explanation."
+        }
+      ]
+    }
+  ]
+}

@@ -13,6 +13,12 @@ Stages: (a) scaffold, storage, API, tests → (b) UI → (c) content, one week a
 - `npm run lint`, `npm run typecheck` (runs `next typegen`, then `tsc`), `npm test`: all three must pass before any stage is called done
 - `npm run content:check`: validate `content/*.json` (schema and integrity rules). The test suite runs the same checks.
 
+## Where things live
+- `src/lib/content/`: the schema, integrity rules, and loaders. `index.ts` loads content for the app and `load.ts` reads it from disk for the tests and `content:check`.
+- `src/lib/progress/`: the progress schema, the pure `apply.ts`, and `service.ts` (the read → apply → write cycle with conflict retry).
+- `src/lib/storage/`: `FileStore`, `GitHubStore` and `getStore()`.
+- `src/lib/api/http.ts`: the route-handler wrapper, the error → status mapping and the same-origin check.
+
 ## Rules that must not break
 - **Task IDs are stable**: `dNN-tM` (e.g. `d07-t3`). Never renumber, reuse or edit an existing ID. A new task takes the next unused `tM` for its day. Saved progress is keyed by these IDs. The rule applies from stage (c).
 - **All progress changes go through the pure `applyOperation()`**. Operations set values; they never toggle, so re-applying one is harmless.
